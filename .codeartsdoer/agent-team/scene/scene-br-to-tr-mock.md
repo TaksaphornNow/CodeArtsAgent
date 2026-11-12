@@ -32,7 +32,7 @@ output/BR.md -> role-tr   -> output/TR.html
 1. Check `output/BR.md` exists (a file check only; do not read it yourself). If not, tell the user to run `agent-br-finalizer` first, and stop.
 2. In **one message**, launch both roles together:
    - `role-tr`: "Read output/BR.md and write output/TR.html."
-   - `role-mock`: "Read output/BR.md and DESIGN.md and write output/MOCK.html."
+   - `role-mock`: "Read output/BR.md and DESIGN.md and write output/MOCK.html. Make it fully interactive: search filters tables, add/edit/delete and save/cancel work on the in-page data, tabs/chips/role selectors toggle, and count/approve actions update the page — all with vanilla JS and fake data. The only buttons that must be non-clickable/disabled are the Excel and CSV export buttons."
 3. Wait for both. If one fails, relaunch only that role once with its error. Never more than once.
 4. Report to the user:
    - Files written

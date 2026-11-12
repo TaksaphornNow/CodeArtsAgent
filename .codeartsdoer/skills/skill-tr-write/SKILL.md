@@ -22,7 +22,7 @@ description: Write a Technical Requirements HTML file (output/TR.html) from the 
 5. Thai is the primary language. Write all text in Thai: title, headings, table labels and body.
    Keep in English only: IDs (`REQ-01`, `TR-01`, `Q-01`), `[TBC: ...]`, file names, and technical
    terms with no common Thai word (e.g. SKU, Dashboard, API, Excel). Headings may add English in brackets.
-6. Never write the customer's company or brand name. Write "ลูกค้า" (the customer). Only TK is named.
+6. Never write the customer's company or brand name. Write "ลูกค้า" (the customer).
 7. Keep it short: at most 20 `TR`, 1 line per cell, no long paragraphs.
 
 ### Solution architecture section (section 5)
@@ -94,14 +94,14 @@ description: Write a Technical Requirements HTML file (output/TR.html) from the 
 <div class="page">
   <header class="doc">
     <h1>ชื่อโครงการ - เอกสารความต้องการทางเทคนิค (TR)</h1>
-    <div class="sub">รหัสเอกสาร TK-TR-001 &middot; อ้างอิงจาก BR เวอร์ชัน (จาก BR) &middot; เวอร์ชัน 0.1 &middot; วันที่ (วันนี้)</div>
+    <div class="sub">รหัสเอกสาร TR-001 &middot; อ้างอิงจาก BR เวอร์ชัน (จาก BR) &middot; เวอร์ชัน 0.1 &middot; วันที่ (วันนี้)</div>
   </header>
 
   <section>
     <h2>1. ภาพรวม (Overview)</h2>
     <table>
       <tr><th>หัวข้อ</th><th>รายละเอียด</th></tr>
-      <tr><td>รหัสเอกสาร</td><td>TK-TR-001</td></tr>
+      <tr><td>รหัสเอกสาร</td><td>TR-001</td></tr>
       <tr><td>อ้างอิงจาก</td><td>(รหัสเอกสาร BR) เวอร์ชัน (เวอร์ชัน BR)</td></tr>
       <tr><td>เวอร์ชัน</td><td>0.1</td></tr>
       <tr><td>วันที่</td><td>(วันนี้)</td></tr>

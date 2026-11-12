@@ -3,7 +3,7 @@ name: skill-br-finalize
 description: Turn the human-reviewed output/BR.docx into the final Thai output/BR.md (version 1.0, Final) with the command in this skill. Used by agent-br-finalizer.
 ---
 
-# Finalize a TK BR (BR.docx -> BR.md)
+# Finalize a BR (BR.docx -> BR.md)
 
 `BR.docx` is the reference. The human already reviewed and edited it.
 

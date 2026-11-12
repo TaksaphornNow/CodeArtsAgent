@@ -1,9 +1,9 @@
 ---
 name: skill-br-write
-description: Write a TK BR as a Word file (output/BR.docx) from a customer note. Gives the 6-section outline, the writing rules and the command that builds the .docx. Used by agent-br-writer.
+description: Write a BR Bussiness Requirement as a Word file (output/BR.docx) from a customer note. Gives the 6-section outline, the writing rules and the command that builds the .docx. Used by agent-br-writer.
 ---
 
-# Write a TK BR (BR.docx)
+# Write a BR (BR.docx)
 
 ## Steps
 
@@ -19,8 +19,8 @@ description: Write a TK BR as a Word file (output/BR.docx) from a customer note.
 4. Thai is the primary language. Write all text in Thai: title, headings, table labels and body.
    Keep in English only: IDs (`REQ-01`, `TR-01`, `Q-01`), `[TBC: ...]`, file names, and technical
    terms with no common Thai word (e.g. SKU, Dashboard, API, Excel). Headings may add English in brackets.
-5. No TK internal notes (price, margin, effort).
-6. Never write the customer's company or brand name. Write "ลูกค้า" (the customer). Only TK is named.
+5. No BR internal notes (price, margin, effort).
+6. Never write the customer's company or brand name. Write "ลูกค้า" (the customer).
 7. Keep it short: at most 15 `REQ` (merge small ones), 1 line per cell, no long paragraphs.
 
 ## Outline (copy and fill - keep these Thai headings and labels)
@@ -31,7 +31,7 @@ description: Write a TK BR as a Word file (output/BR.docx) from a customer note.
 ## 1. ภาพรวม (Overview)
 | หัวข้อ | รายละเอียด |
 |---|---|
-| รหัสเอกสาร | TK-BR-001 |
+| รหัสเอกสาร | BR-001 |
 | เวอร์ชัน | 0.1 |
 | วันที่ | <วันนี้> |
 | สถานะ | ฉบับร่าง (Draft) |
@@ -48,7 +48,7 @@ description: Write a TK BR as a Word file (output/BR.docx) from a customer note.
 ## 3. ผู้เกี่ยวข้อง (Stakeholders)
 | ชื่อ | องค์กร | บทบาท |
 |---|---|---|
-| <ชื่อ> | TK หรือ ลูกค้า | <บทบาท> (ผู้อนุมัติ) |
+| <ชื่อ> | BR หรือ ลูกค้า | <บทบาท> (ผู้อนุมัติ) |
 
 ## 4. ความต้องการ (Requirements)
 | รหัส | ความต้องการ | วิธีตรวจสอบ |
@@ -63,7 +63,6 @@ description: Write a TK BR as a Word file (output/BR.docx) from a customer note.
 ## 6. การลงนาม (Sign-off)
 | ฝ่าย | ชื่อ | ตำแหน่ง | ลายเซ็น | วันที่ |
 |---|---|---|---|---|
-| TK | | | | |
 | ลูกค้า | | | | |
 ```
 
@@ -92,14 +91,21 @@ def p(t, st=None, b=False):
     ppr = '<w:pStyle w:val="%s"/>' % st if st else ""
     return f"<w:p><w:pPr>{ppr}</w:pPr>{run(t, b)}</w:p>"
 def table(rows):
-    n = max(len(r) for r in rows); w = 9900 // n
-    x = ['<w:tbl><w:tblPr><w:tblStyle w:val="Grid"/><w:tblW w:w="5000" w:type="pct"/></w:tblPr><w:tblGrid>'
-         + f'<w:gridCol w:w="{w}"/>' * n + "</w:tblGrid>"]
+    n = max(len(r) for r in rows)
+    weights = []
+    for c in range(n):
+        mx = max((len(r[c]) for r in rows if c < len(r)), default=1)
+        weights.append(max(10, min(mx, 40)))
+    total = 9900; s = sum(weights)
+    widths = [max(900, int(total * w / s)) for w in weights]
+    widths[-1] += total - sum(widths)
+    x = ['<w:tbl><w:tblPr><w:tblStyle w:val="Grid"/><w:tblW w:w="%d" w:type="dxa"/><w:tblLayout w:type="fixed"/></w:tblPr><w:tblGrid>' % total
+         + "".join(f'<w:gridCol w:w="{wd}"/>' for wd in widths) + "</w:tblGrid>"]
     for i, r in enumerate(rows):
         x.append("<w:tr>")
-        for c in r + [""] * (n - len(r)):
+        for j, c in enumerate(r + [""] * (n - len(r))):
             sh = '<w:shd w:val="clear" w:fill="E8EEF5"/>' if i == 0 else ""
-            x.append(f'<w:tc><w:tcPr><w:tcW w:w="{w}" w:type="dxa"/>{sh}</w:tcPr>{p(c, b=(i == 0))}</w:tc>')
+            x.append(f'<w:tc><w:tcPr><w:tcW w:w="{widths[j]}" w:type="dxa"/>{sh}</w:tcPr>{p(c, b=(i == 0))}</w:tc>')
         x.append("</w:tr>")
     return "".join(x) + "</w:tbl><w:p/>"
 body, rows = [], []
