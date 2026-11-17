@@ -1,7 +1,6 @@
 ---
 description: >-
-  Finalizes a TK BR after human review. Converts output/BR.docx into
-  output/BR.md (version 1.0, Final) with the skill-br-finalize skill.
+  Finalizes a Business Requirements (BR) after human review. Converts output/BR.docx into output/BR.md (version 1.0, Final) with the skill-br-finalize skill.
 mode: primary
 tools:
   glob: true

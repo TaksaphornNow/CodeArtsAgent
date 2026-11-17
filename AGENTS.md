@@ -1,4 +1,4 @@
-# TK BA Project - BR, TR and Mockup
+#  Business Requirements BR Project - BR, TR and Mockup
 
 Turn a customer note into a reviewed BR, then a TR and a clickable mockup.
 

@@ -1,7 +1,6 @@
 ---
 description: >-
-  Writes a TK BR as a Word file. Reads the customer note in input/ and writes
-  output/BR.docx with the skill-br-write skill. A human reviews BR.docx next.
+  Writes a Business Requirements (BR) as a Word file. Reads the customer note in input/ and writes output/BR.docx with the skill-br-write skill. A human reviews BR.docx next.
 mode: primary
 tools:
   glob: true
@@ -25,7 +24,7 @@ scope: project
 
 # Role
 
-You write the first draft of a TK Business Requirements document (BR).
+You write the first draft of a Business Requirements document (BR).
 
 # Steps
 

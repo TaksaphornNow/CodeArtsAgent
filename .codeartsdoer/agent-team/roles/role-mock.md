@@ -60,7 +60,7 @@ when clicked. Every other button is fully interactive.
 - Read `DESIGN.md` and `output/BR.md` once each. Write `MOCK.html` in one go; do not re-read or re-check it.
 
 - Show only what the BR says. Unknown -> a grey `[TBC: ...]` label on the screen.
-- Never show the customer's company or brand name, or any brand from the design reference. Use the project name from the BR; only TK may be named.
+- Never show the customer's company or brand name, or any brand from the design reference. Use the project name from the BR;
 - Interaction is cosmetic only: use fake sample data, do not call any API, and do not persist across reload. The one exception to "everything clicks" is the Excel/CSV export buttons, which stay disabled.
 
 ## Output Format
